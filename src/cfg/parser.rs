@@ -1,6 +1,4 @@
-use super::CFGRule;
-use lazy_static::lazy_static;
-use regex::Regex;
+use super::{is_nonterminal, CFGRule};
 /**
 * A module to parse strings as CFG rules
 */
@@ -47,18 +45,6 @@ fn tokenize_rule(rule_str: &str) -> Vec<String> {
     }
 
     elements
-}
-
-/**
-* Returns whether a string represents a SINGLE nonterminal.
-*
-* A nonterminal consists of an uppercase character potentiall followed by
-*/
-fn is_nonterminal(s: &str) -> bool {
-    lazy_static! {
-        static ref RE: Regex = Regex::new(r"^[A-Z](_[A-Za-z0-9]+)?$").unwrap();
-    }
-    RE.is_match(s)
 }
 
 #[cfg(test)]
